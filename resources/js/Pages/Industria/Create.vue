@@ -22,7 +22,7 @@ const props = defineProps({
 
 
 const form = useForm({
-    type:'',
+    type:0,
     dependence:'',
     name: '',
     type: '',
@@ -53,18 +53,20 @@ const submit = () => {
                         <form @submit.prevent="submit">
                             <div class="mb-6">
                                 <label
-                                    for="Name"
+                                    for="type"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Name</label
-                                >
-                                {{types}}
+                                    >Type</label
+                                >{{dep}}
                                 <select
                                     v-model="form.type"
                                     name="type"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     >
-                                <option v-for="tp in types" :value="tp.id">
-                                    {{ tp.value }}
+                                    <option id="tp-0"  value="0">
+                                   New
+                                </option>
+                                <option v-for="(tp,id) in types" id="'tp-'+id" :value="id">
+                                    {{ tp }}
                                 </option>
                                 </select>
                                 <div
