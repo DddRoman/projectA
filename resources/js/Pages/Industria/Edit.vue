@@ -6,32 +6,45 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    position: {
+    industr: {
+        type: Object,
+        default: () => ({}),
+    },
+    all_dep: {
+        type: Object,
+        default: () => ({}),
+    },
+    dep: {
+        type: Object,
+        default: () => ({}),
+    },
+    types: {
         type: Object,
         default: () => ({}),
     },
 });
 
 const form = useForm({
-    id: props.position.id,
-    title: props.position.title,
-    slug: props.position.slug,
-    content: props.position.content,
+    id: props.industr.id,
+    dependence:props.industr.dependence,
+    name: props.industr.name,
+    type: props.industr.type,
+    discription: props.industr.discription,
 });
 
 
 const submit = () => {
-    form.put(route("positions.update", props.position.id));
+    form.put(route("industria.update", props.industr.id));
 };
 </script>
 
 <template>
-    <Head title="Position Edit" />
+    <Head title="Industria Edit" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Position Edit
+                Industria Edit
             </h2>
         </template>
 
@@ -42,73 +55,109 @@ const submit = () => {
                         <form @submit.prevent="submit">
                             <div class="mb-6">
                                 <label
-                                    for="Title"
+                                    for="type"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Title</label
+                                    >Type</label
                                 >
-                                <input
-                                    type="text"
-                                    v-model="form.title"
-                                    name="title"
+                                <select
+                                    v-model="form.type"
+                                    name="type"
+                                    value="form.type"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder=""
-                                />
+                                    >
+                                    <option id="tp-0"  value="0">
+                                   New
+                                </option>
+                                <option v-for="(tp,id) in types" id="'tp-'+id" :value="id">
+                                    {{ tp }}
+                                </option>
+                                </select>
                                 <div
-                                    v-if="form.errors.title"
+                                    v-if="form.errors.type"
                                     class="text-sm text-red-600"
                                 >
-                                    {{ form.errors.title }}
+                                    {{ form.errors.type }}
                                 </div>
                             </div>
                             <div class="mb-6">
                                 <label
-                                    for="Slug"
+                                    for="dependence"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Slug</label
+                                    >Dependence</label
                                 >
-                                <input
-                                    type="text"
-                                    v-model="form.slug"
-                                    name="title"
+                                <select
+                                    v-model="form.dependence"
+                                    name="dependence"
+                                    value="dep"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder=""
-                                />
+                                    >
+                                    <option id="dp-0"  value="0">
+                                   New
+                                </option>
+                                <option v-for="dp in all_dep" id="'dp-'+id" :value="dp.id">
+                                    {{ dp.name }}
+                                </option>
+                                </select>
                                 <div
-                                    v-if="form.errors.slug"
+                                    v-if="form.errors.dependence"
                                     class="text-sm text-red-600"
                                 >
-                                    {{ form.errors.slug }}
+                                    {{ form.errors.dependence }}
                                 </div>
                             </div>
                             <div class="mb-6">
                                 <label
-                                    for="slug"
+                                    for="Name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Content</label
+                                    >Name</label
+                                >
+                                <input
+                                    type="text"
+                                    v-model="form.name"
+                                    name="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Name position"
+                                />
+                                <div
+                                    v-if="form.errors.name"
+                                    class="text-sm text-red-600"
+                                >
+                                    {{ form.errors.name }}
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label
+                                    for="discription"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                    >Discription</label
                                 >
                                 <textarea
                                     type="text"
-                                    v-model="form.content"
-                                    name="content"
-                                    id=""
+                                    v-model="form.discription"
+                                    name="discription"
+                                    id="discription"
+                                    placeholder="About industria"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 ></textarea>
 
                                 <div
-                                    v-if="form.errors.content"
+                                    v-if="form.errors.discription"
                                     class="text-sm text-red-600"
                                 >
-                                    {{ form.errors.content }}
+                                    {{ form.errors.discription }}
                                 </div>
                             </div>
-                            <button
+                            <div class="mb-6"> 
+                               <button
                                 type="submit"
-                                class="text-white bg-blue-700  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 "
-                                :disabled="form.processing"
-                                :class="{ 'opacity-25': form.processing }"
+                                class="text-black bg-blue-700  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 "
+
                             >
                                 Submit
-                            </button>
+                            </button>  
+                            </div>
+                           
                         </form>
                     </div>
                 </div>

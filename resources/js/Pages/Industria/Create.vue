@@ -22,10 +22,9 @@ const props = defineProps({
 
 
 const form = useForm({
-    type:0,
-    dependence:'',
+    dependence:props.dep,
     name: '',
-    type: '',
+    type: 0,
     discription: '',
 });
 
@@ -56,10 +55,11 @@ const submit = () => {
                                     for="type"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                     >Type</label
-                                >{{dep}}
+                                >
                                 <select
                                     v-model="form.type"
                                     name="type"
+                                    value="form.type"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     >
                                     <option id="tp-0"  value="0">
@@ -74,6 +74,32 @@ const submit = () => {
                                     class="text-sm text-red-600"
                                 >
                                     {{ form.errors.type }}
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label
+                                    for="dependence"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                    >Dependence</label
+                                >{{dep}}
+                                <select
+                                    v-model="form.dependence"
+                                    name="dependence"
+                                    value="dep"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    >
+                                    <option id="dp-0"  value="0">
+                                   New
+                                </option>
+                                <option v-for="dp in all_dep" id="'dp-'+id" :value="dp.id">
+                                    {{ dp.name }}
+                                </option>
+                                </select>
+                                <div
+                                    v-if="form.errors.dependence"
+                                    class="text-sm text-red-600"
+                                >
+                                    {{ form.errors.dependence }}
                                 </div>
                             </div>
                             <div class="mb-6">
@@ -96,26 +122,7 @@ const submit = () => {
                                     {{ form.errors.name }}
                                 </div>
                             </div>
-                            <div class="mb-6">
-                                <label
-                                    for="abv"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >ABV</label
-                                >
-                                <input
-                                    type="text"
-                                    v-model="form.abv"
-                                    name="abv"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="abviature"
-                                />
-                                <div
-                                    v-if="form.errors.abv"
-                                    class="text-sm text-red-600"
-                                >
-                                    {{ form.errors.abv }}
-                                </div>
-                            </div>
+
                             <div class="mb-6">
                                 <label
                                     for="discription"
@@ -126,8 +133,8 @@ const submit = () => {
                                     type="text"
                                     v-model="form.discription"
                                     name="discription"
-                                    id=""
-                                    placeholder="About position"
+                                    id="discription"
+                                    placeholder="About industria"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 ></textarea>
 

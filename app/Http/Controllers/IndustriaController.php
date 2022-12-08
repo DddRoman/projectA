@@ -43,7 +43,7 @@ class IndustriaController extends ApiController
             'Industria/Create',
             [
                 'dep'=>$request->depend,
-                'all_dep'=>$industria,
+                'all_dep'=>$industria->get(),
                 'types'=>$type,
             ]
         );
@@ -89,7 +89,17 @@ class IndustriaController extends ApiController
      */
     public function edit($id)
     {
-        return view('industria.edit',['data'=>Industria::find($id)]);
+
+        $industria = Industria::where('auth_id','=',Auth::id());
+        $type=TypeController::type_array(1);
+        return Inertia::render(
+            'Industria/Edit',
+            [
+              'industr'=>Industria::find($id),
+                'all_dep'=>$industria->get(),
+              'types'=>$type,
+            ]
+        );
     }
 
     /**
