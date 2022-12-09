@@ -1,6 +1,9 @@
-<template>
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-        <ellipse rx="76.0" fill="#ffffff" ry="207.5" cx="223.0" cy="648.5" stroke="#000000"/>
+<?xml version="1.0" standalone="no"?>
+<!--Created with Sketsa SVG Editor (http://www.kiyut.com)-->
+<svg contentScriptType="text/ecmascript" width="600.0px" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full"
+    zoomAndPan="magnify" contentStyleType="text/css" height="600.0px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+    version="1.0">
+    <ellipse rx="76.0" fill="#ffffff" ry="207.5" cx="223.0" cy="648.5" stroke="#000000"/>
     <polygon fill="#99ccff" points="0.0,600.0 190.0,160.0 300.0,160.0 490.0,600.0" stroke="#000000"/>
     <ellipse rx="76.0" fill="#ffff00" ry="207.5" cx="160.0" cy="651.5" stroke="#000000"/>
     <ellipse rx="76.0" fill="#ffff00" ry="207.5" cx="332.0" cy="659.5" stroke="#000000"/>
@@ -10,5 +13,4 @@
     <line y2="508.0" fill="none" x1="262.0" x2="382.0" stroke="#000000" y1="599.0"/>
     <polygon fill="#ffff33" points="190.0,160.0 315.0,65.0 420.0,65.0 300.0,160.0" stroke="#000000"/>
     <polygon fill="#ffff33" points="490.0,600.0 300.0,160.0 420.0,65.0 600.0,500.0" stroke="#000000"/>
-    </svg>
-</template>
+</svg>

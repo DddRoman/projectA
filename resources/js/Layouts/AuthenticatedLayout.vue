@@ -34,6 +34,23 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
                             </div>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="'/industria'" >
+                                    IND
+                                </NavLink>
+                            </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink :href="'/structures'" >
+                                Struct
+                            </NavLink>
+                        </div>
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink :href="'/positions'" >
+                                Position
+                            </NavLink>
+                        </div>
+
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <!-- Settings Dropdown -->

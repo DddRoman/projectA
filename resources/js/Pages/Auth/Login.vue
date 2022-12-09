@@ -80,7 +80,11 @@ const submit = () => {
                 >
                     Forgot your password?
                 </Link>
-
+                <Link 
+                :href="route('register')"
+                class="ml-4">
+                     Registration
+                </Link>
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>

@@ -37,7 +37,6 @@ const submit = () => {
 
 <template>
     <Head title="Industria Create" />
-
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -81,7 +80,7 @@ const submit = () => {
                                     for="dependence"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                     >Dependence</label
-                                >{{dep}}
+                                >
                                 <select
                                     v-model="form.dependence"
                                     name="dependence"
@@ -151,7 +150,7 @@ const submit = () => {
                                 class="text-black bg-blue-700  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 "
 
                             >
-                                Submit
+                                Записать
                             </button>  
                             </div>
                            

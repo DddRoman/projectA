@@ -104,7 +104,7 @@ function destroy(id) {
                                         </td>
                                         <td class="px-6 py-4">
                                             <BreezeButton
-                                                class="bg-red-700"
+                                                class="bg-red-700 text-white "
                                                 @click="destroy(indust.id)"
                                             >
                                                 Delete

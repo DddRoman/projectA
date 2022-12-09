@@ -15,11 +15,11 @@ class StructureController extends Controller
      */
     public function index()
     {
-        $structures = Structure::all();
+        $structures = Structure::where('ind_id','=',1);
         return Inertia::render(
             'Structure/Index',
             [
-                'structures' => $structures
+                'structures' => $structures->get(),
             ]
         );
     }

@@ -154,7 +154,7 @@ const submit = () => {
                                 class="text-black bg-blue-700  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 "
 
                             >
-                                Submit
+                                Записать
                             </button>  
                             </div>
                            

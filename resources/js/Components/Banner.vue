@@ -52,7 +52,7 @@ watch(message, async () => {
                         </span>
 
                         <p class="ml-3 font-medium text-sm text-white truncate">
-                            {{ message }}
+                            {{ message }} +++***
                         </p>
                     </div>
 

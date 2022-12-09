@@ -23,8 +23,6 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 })->middleware(['auth'])->name('index');
 
@@ -37,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::resource('positions',PositionController::class);
-Route::resource('structures',StructureController::class);
-Route::resource('industria',IndustriaController::class);
+Route::resource('/positions',PositionController::class);
+Route::resource('/structures',StructureController::class);
+Route::resource('/industria',IndustriaController::class);
 require __DIR__.'/auth.php';
