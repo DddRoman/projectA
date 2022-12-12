@@ -6,46 +6,40 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    structures: {
+    industria: {
         type: Object,
         default: () => ({}),
     },
+    deps: {
+        type: Object,
+        default: () => ({}),
+    },
+    dep: {
+        type: Object,
+        default: () => (0),
+    },
 });
-
 
 const form = useForm({
-    struct_id:'',
-    selected:'',
+    ind_id:props.industria.id,
+    dependence:props.dep,
     name: '',
     abv: '',
-    discription: '',
-
 });
-
+//form.ind_id=industria.id;
+//form.dependence=dep;
 const submit = () => {
     form.post(route("structures.store"));
 };
-
-
-
-form.struct_id= '1';
-const   options= [
-        { text: 'One', value: '1' },
-        { text: 'Two', value: '2' },
-        { text: 'Three', value: '3' }
-      ];
- 
-
-
-</script>
+ </script>
 
 <template>
-    <Head title="Position Create" />
+    <Head title="Structure Create" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Position Create
+                Structure Create
             </h2>
         </template>
 
@@ -55,22 +49,32 @@ const   options= [
                     <div class="p-6 bg-white border-b border-gray-200">
                         <form @submit.prevent="submit">
                             <div class="mb-6">
+                                <input
+                                    type="hidden"
+                                    v-model="form.ind_id"
+                                    id="ind_id"
+                                    name="ind_id"
+                                />
                                 <label
                                     for="struct_id"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Structure structure</label
+                                    >Structure dependence</label
                                 >
                                 <select 
-                                v-model="form.struct_id"
+                                v-model="form.dependence"
                                 name="struct_id"
+                                :value="dep"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                   
                                 >
-                                <option v-for="option in options" :value="option.value">
-                                    {{ option.text }}
+                                <option id="struct_id_0" value="0">
+                                    New
+                                </option>
+                                <option v-for="option in deps" :value="option.id" :key="'dep_'+option.id" >
+                                    {{ option.name }}
                                 </option>
                                 </select>
-                                <div>struct_id: {{ form.struct_id }}</div>
+
                                 <div
                                     v-if="form.errors.struct_id"
                                     class="text-sm text-red-600"
@@ -118,28 +122,7 @@ const   options= [
                                     {{ form.errors.abv }}
                                 </div>
                             </div>
-                            <div class="mb-6">
-                                <label
-                                    for="discription"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                    >Discription</label
-                                >
-                                <textarea
-                                    type="text"
-                                    v-model="form.discription"
-                                    name="discription"
-                                    id=""
-                                    placeholder="About structure"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                ></textarea>
-
-                                <div
-                                    v-if="form.errors.discription"
-                                    class="text-sm text-red-600"
-                                >
-                                    {{ form.errors.discription }}
-                                </div>
-                            </div>
+ 
                             <div class="mb-6"> 
                                <button
                                 type="submit"

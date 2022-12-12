@@ -5,6 +5,7 @@ use App\Models\Structure;
 use App\Models\Industria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 class StructureController extends Controller
 {
@@ -13,17 +14,57 @@ class StructureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function ses()
+    {   
+        //Session::forget('industria');
+        //Session::flush();
+       // return Industria::find(session('structure'));
+       // return session('_token');
+        return Session::get('structure');
+
+    }
     public function index()
     {
-        $structures = Structure::where('ind_id','=',1);
-        return Inertia::render(
-            'Structure/Index',
-            [
-                'structures' => $structures->get(),
-            ]
-        );
-    }
+        if(session()->has('industria')) // ищем сессии индустрию если находим то загружаем индекс
+        {
 
+           return $this->index_show();
+        }
+        else //нет переходим к выбору индустрии
+        {
+          return $this->select_other();
+        } 
+        
+    }
+    public function select_other(){
+        if(Industria::where('auth_id','=',Auth::id())->count()==0)
+            return redirect('/industria/create');
+            else
+            return Inertia::render(
+                'Structure/Select',
+                [
+                    'industrias' => Industria::where('auth_id','=',Auth::id())->get(),
+
+                ]
+            );
+    }
+    public function index_show(){
+        $id_industria=session('industria');
+        $structures = Structure::where('ind_id','=',$id_industria);
+        return Inertia::render(
+                'Structure/Index',
+                [
+                    'structures' => $structures->get(),
+                    'industria'=>Industria::find($id_industria),
+                ]
+            );
+    }
+    public function select_industria($industria)
+    {
+       // session()->forget('industria');
+        session(['industria'=>$industria]);
+        return $this->index_show();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -31,9 +72,16 @@ class StructureController extends Controller
      */
     public function create()
     {
-
+        $id_industria=session('industria');
+        $id_struct=session('structure');
+        $dep=Structure::where('ind_id','=',$id_industria);
         return Inertia::render(
             'Structure/Create',
+            [
+                'industria'=>Industria::find($id_industria),
+                'deps'=>$dep->get(),
+                'dep'=>$id_struct,
+            ]
         );
     }
 
@@ -46,17 +94,18 @@ class StructureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'struct_id' => 'required',
+            'ind_id' => 'required',
             'name' => 'required|string|max:255',
             'abv' => 'required|string|max:10',
-            'discription' => 'required',
+            'dependence' => 'required',
         ]);
-        Structure::create([
-            'struct_id' => $request->struct_id,
-            'name' => \Str::slug($request->name),
-            'abv' => \Str::slug($request->abv),
-            'discription' => $request->discription
+        $nstr=Structure::create([
+            'ind_id' => $request->ind_id,
+            'name' => $request->name,
+            'abv' => $request->abv,
+            'dependence' => $request->dependence,
         ]);
+        session(['structure'=>$nstr->id]);
         sleep(1);
 
         return redirect()->route('structures.index')->with('message', 'Structures Created Successfully');
@@ -81,14 +130,14 @@ class StructureController extends Controller
      */
     public function edit(Structure $structure)
     {
-       $Industries=Industria::where('auth_id','=',Auth::id())->select('id','name');
-        $dep_strut=Structure::where('dependence','=',$structure->dependence)->whereOr('dependence','=',0)->select('id','name');
+        $id_industria=session('industria');
+        $dep=Structure::where('ind_id','=',$id_industria);
         return Inertia::render(
             'Structure/Edit',
             [
-                'structure' => $structure,
-                 'industries'=>$Industries->get(),
-              'dep_strut'=>$dep_strut->get(),
+              'structure' => $structure,
+              'industries'=>Industria::find($id_industria),
+              'dep_strut'=>$dep->get(),
             ]
         );
     }
@@ -108,10 +157,10 @@ class StructureController extends Controller
             'abv' => 'required|string|max:10',
             'dependence' => 'required',
         ]);
-
+        
         $structure->ind_id = $request->ind_id;
-        $structure->name = \Str::slug($request->name);
-        $structure->abv = \Str::slug($request->abv);
+        $structure->name = $request->name;
+        $structure->abv = $request->abv;
         $structure->dependence = $request->dependence;
         $structure->save();
         sleep(1);

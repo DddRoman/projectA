@@ -68,7 +68,7 @@ const submit = () => {
                                     <option id="tp-0"  value="0">
                                    New
                                 </option>
-                                <option v-for="(tp,id) in types" id="'tp-'+id" :value="id">
+                                <option v-for="(tp,id) in types" :key="'tp-'+id" :value="id">
                                     {{ tp }}
                                 </option>
                                 </select>
@@ -91,10 +91,10 @@ const submit = () => {
                                     value="dep"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     >
-                                    <option id="dp-0"  value="0">
+                                    <option :key="dp-0"  value="0">
                                    New
                                 </option>
-                                <option v-for="dp in all_dep" id="'dp-'+id" :value="dp.id">
+                                <option v-for="dp in all_dep" :key="'dp-'+id" :value="dp.id">
                                     {{ dp.name }}
                                 </option>
                                 </select>

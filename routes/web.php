@@ -34,8 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/structures/select/{ind}', [StructureController::class, 'select_industria'])->name('structures.select');
+    Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
+    Route::get('/ses', [StructureController::class, 'ses'])->name('ses');
 });
 Route::resource('/positions',PositionController::class);
 Route::resource('/structures',StructureController::class);
+
 Route::resource('/industria',IndustriaController::class);
 require __DIR__.'/auth.php';
