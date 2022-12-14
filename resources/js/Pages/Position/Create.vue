@@ -6,35 +6,38 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    positions: {
+    industria: {
         type: Object,
         default: () => ({}),
+    },
+    structure: {
+        type: Object,
+        default: () => ({}),
+    },
+    deps: {
+        type: Object,
+        default: () => ({}),
+    },
+    dep: {
+        type: Object,
+        default: () => (0),
     },
 });
 
 
 const form = useForm({
-    struct_id:'',
-    selected:'',
+    struct_id:props.structure.id,
+    dependence:props.dep,
     name: '',
     abv: '',
     discription: '',
+
 
 });
 
 const submit = () => {
     form.post(route("positions.store"));
 };
-
-
-
-form.selected= 'A';
-const   options= [
-        { text: 'One', value: '1' },
-        { text: 'Two', value: '2' },
-        { text: 'Three', value: '3' }
-      ];
- 
 
 
 </script>
@@ -60,17 +63,14 @@ const   options= [
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                     >Structure position</label
                                 >
-                                <select 
+                                <input 
+                                type="hidden"
                                 v-model="form.struct_id"
                                 name="struct_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                  
-                                >
-                                <option v-for="option in options" :value="option.value">
-                                    {{ option.text }}
-                                </option>
-                                </select>
-                                <div>struct_id: {{ form.struct_id }}</div>
+                                 
+                                />
+
+                                <div>struct_id: {{ form.struct_id }} {{props.structure.name}}</div>
                                 <div
                                     v-if="form.errors.struct_id"
                                     class="text-sm text-red-600"
@@ -138,6 +138,32 @@ const   options= [
                                     class="text-sm text-red-600"
                                 >
                                     {{ form.errors.discription }}
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label
+                                    for="dependence"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                    >Dependence</label
+                                >
+                                <select
+                                    type="text"
+                                    v-model="form.dependence"
+                                    name="dependence"
+                                    id="dependence"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                >
+                            <option value="0" id="dp_0">New</option>
+                            <option v-for="dep in props.deps" :value="dep.id" :key="'dp_'+dep.id">
+                                {{dep.name}}
+                            </option>
+                            </select>
+
+                                <div
+                                    v-if="form.errors.dependence"
+                                    class="text-sm text-red-600"
+                                >
+                                    {{ form.errors.dependence }}
                                 </div>
                             </div>
                             <div class="mb-6"> 

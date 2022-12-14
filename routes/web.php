@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/structures/select/{ind}', [StructureController::class, 'select_industria'])->name('structures.select');
     Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
+    Route::get('/positions/select/{ind}', [PositionController::class, 'select_structure'])->name('positions.select');
+    Route::get('/positions/select', [PositionController::class, 'select_other'])->name('positions.other');
     Route::get('/ses', [StructureController::class, 'ses'])->name('ses');
 });
 Route::resource('/positions',PositionController::class);

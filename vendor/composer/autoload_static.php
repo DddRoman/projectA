@@ -633,6 +633,7 @@ class ComposerStaticInita6db85f0944de31ed9044fa5d1995a45
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\Industria' => __DIR__ . '/../..' . '/app/Models/Industria.php',
         'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
+        'App\\Models\\Proposal' => __DIR__ . '/../..' . '/app/Models/Proposal.php',
         'App\\Models\\Structure' => __DIR__ . '/../..' . '/app/Models/Structure.php',
         'App\\Models\\Type' => __DIR__ . '/../..' . '/app/Models/Type.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

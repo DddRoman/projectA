@@ -10,6 +10,7 @@ class Position extends Model
     use HasFactory;
     protected $table = 'positions';
     protected $fillable = [
+        'dependence',
         'struct_id',
         'name',
         'abv',
