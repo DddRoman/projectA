@@ -615,6 +615,7 @@ class ComposerStaticInita6db85f0944de31ed9044fa5d1995a45
         'App\\Http\\Controllers\\IndustriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndustriaController.php',
         'App\\Http\\Controllers\\PositionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PositionController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\ProposalController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProposalController.php',
         'App\\Http\\Controllers\\Services\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Services/ApiController.php',
         'App\\Http\\Controllers\\StructureController' => __DIR__ . '/../..' . '/app/Http/Controllers/StructureController.php',
         'App\\Http\\Controllers\\TypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/TypeController.php',

@@ -34,6 +34,7 @@ return array(
     'App\\Http\\Controllers\\IndustriaController' => $baseDir . '/app/Http/Controllers/IndustriaController.php',
     'App\\Http\\Controllers\\PositionController' => $baseDir . '/app/Http/Controllers/PositionController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
+    'App\\Http\\Controllers\\ProposalController' => $baseDir . '/app/Http/Controllers/ProposalController.php',
     'App\\Http\\Controllers\\Services\\ApiController' => $baseDir . '/app/Http/Controllers/Services/ApiController.php',
     'App\\Http\\Controllers\\StructureController' => $baseDir . '/app/Http/Controllers/StructureController.php',
     'App\\Http\\Controllers\\TypeController' => $baseDir . '/app/Http/Controllers/TypeController.php',

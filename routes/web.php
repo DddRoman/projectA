@@ -45,3 +45,4 @@ Route::resource('/structures',StructureController::class);
 
 Route::resource('/industria',IndustriaController::class);
 require __DIR__.'/auth.php';
+require __DIR__.'/docs.php';
