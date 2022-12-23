@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('doc_verification', function (Blueprint $table) {
             $table->id();
-            $table->integer('doc_version_id');
+            $table->foreignId('doc_version_id');
             $table->integer('action'); // 1 утверждение  2- визирование 3- ознакомлен - 4 просмотрен  0 требует внимание
             $table->integer('user_id');
             $table->timestamps();

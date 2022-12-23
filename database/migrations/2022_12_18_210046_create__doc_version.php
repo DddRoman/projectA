@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('doc_version', function (Blueprint $table) {
             $table->id();
-            $table->integer('doc_id');
+            $table->foreignId('doc_id');
             $table->string('name');
             $table->string('shifr');
             $table->string('version');

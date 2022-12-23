@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('structures', function (Blueprint $table) {
             $table->id();
-            $table->integer('ind_id');
+            $table->foreignId('ind_id');
             $table->integer('dependence');
             $table->string('name');
             $table->string('abv');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->integer('struct_id');
+            $table->foreignId('struct_id');
             $table->string('name');
             $table->string('abv');
             $table->text('discription');

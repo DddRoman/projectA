@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('goals', function (Blueprint $table) {
             $table->id();
-            $table->integer('politic_id');
+            $table->foreignId('politic_id');
             $table->string('name');
             $table->string('body');
             $table->timestamps();

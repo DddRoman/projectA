@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('politics', function (Blueprint $table) {
             $table->id();
-            $table->integer('ind_id');
+            $table->foreignId('ind_id');
             $table->string('name');
             $table->string('body');
             $table->timestamps();
