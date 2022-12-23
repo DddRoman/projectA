@@ -14,6 +14,6 @@ class DocTextSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\DocText::factory(1000000)->create();
+        \App\Models\DocText::factory(100000)->create();
     }
 }

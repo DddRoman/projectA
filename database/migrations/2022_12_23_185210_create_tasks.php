@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('goals', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('politic_id');
+            $table->foreignId('goal_id');
             $table->string('name');
             $table->text('text');
             $table->timestamps();
         });
-        Schema::table('goals', static function (Blueprint $table): void {
-            $table->foreign('politic_id')->references('id')->on('politics')->onDelete('cascade');
+        Schema::table('tasks', static function (Blueprint $table): void {
+            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_goals');
+        Schema::dropIfExists('tasks');
     }
 };

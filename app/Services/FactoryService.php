@@ -5,6 +5,8 @@ use App\Models\User;
 use App\Models\Industria;
 use App\Models\Structure;
 use App\Models\Position;
+use App\Models\Politics;
+use App\Models\Goals;
 use App\Models\Docs;
 use App\Models\DocText;
 use App\Models\DocVersion;
@@ -72,4 +74,12 @@ class FactoryService
       return DocText::query()->where('doc_version_id','=',$id_doc)->pluck('id')->random();
       else return 0;
     }
+    public static function getRandomPoliticId()
+    {
+        return Politics::query()->pluck('id')->random();
+    } 
+    public static function getRandomGoalsId()
+    {
+        return Goals::query()->pluck('id')->random();
+    } 
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DocVersionSeeder extends Seeder
+class GoalsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class DocVersionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\DocVersion::factory(100)->create();
+        \App\Models\Goals::factory(100)->create();
     }
 }

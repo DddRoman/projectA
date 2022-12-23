@@ -86,5 +86,11 @@ class DatabaseSeeder extends Seeder
             DocVerificationSeeder::class, 
             DocTextSeeder::class,
             ]);
+            $this->call([
+                PoliticsSeeder::class,
+                GoalsSeeder::class,
+                TaskSeeder::class,
+                ]);
+
     }
 }

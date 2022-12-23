@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ind_id');
             $table->string('name');
-            $table->string('body');
+            $table->text('text');
             $table->timestamps();
         });
         Schema::table('politics', static function (Blueprint $table): void {
