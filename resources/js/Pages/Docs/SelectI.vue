@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    structures: {
+    industrias: {
         type: Object,
         default: () => ({}),
     },
@@ -45,42 +45,35 @@ const props = defineProps({
                                             Name
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            Abv
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
                                             Select
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="struct in structures"
-                                        :key="struct.id"
+                                        v-for="ind in industrias"
+                                        :key="ind.id"
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                     >
                                         <th
                                             scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                                         >
-                                            {{ struct.id }}
+                                            {{ ind.id }}
                                         </th>
                                         <th
                                             scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                                         >
-                                            {{ struct.name }}
+                                            {{ ind.name }}
                                         </th>
-                                        <td class="px-6 py-4">
-                                            {{ struct.abv }}
-                                        </td>
-
-
                                         <td class="px-6 py-4">
                                             <Link
                                                 :href="
                                                     route(
-                                                        'positions.select',
-                                                        struct.id
+                                                        'docs.select',
+                                                        [ind.id,
+                                                        'industria',]
                                                     )
                                                 "
                                                class="px-4 py-2 text-white bg-blue-600 rounded-lg" >Select</Link

@@ -13,6 +13,7 @@ class Type extends Model
     protected $fillable = [
         'dependence',
         'name',
+        'abv',
         'discription',
     ];
     public $timestamps = false;

@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    structures: {
+    structuries: {
         type: Object,
         default: () => ({}),
     },
@@ -45,16 +45,13 @@ const props = defineProps({
                                             Name
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            Abv
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
                                             Select
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="struct in structures"
+                                        v-for="struct in structuries"
                                         :key="struct.id"
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                     >
@@ -79,9 +76,10 @@ const props = defineProps({
                                             <Link
                                                 :href="
                                                     route(
-                                                        'positions.select',
-                                                        struct.id
-                                                    )
+                                                        'docs.select',
+                                                        [struct.id,
+                                                        'structure',]
+                                                      )
                                                 "
                                                class="px-4 py-2 text-white bg-blue-600 rounded-lg" >Select</Link
                                             >

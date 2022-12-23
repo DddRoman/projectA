@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('auth_id')->after('id');
             $table->integer('dependence')->after('id');
         });
+        Schema::table('industria', static function (Blueprint $table): void {
+            $table->foreign('auth_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
     /**

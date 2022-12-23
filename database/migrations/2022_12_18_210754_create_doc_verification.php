@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('user_id');
             $table->timestamps();
         });
+        Schema::table('doc_verification', static function (Blueprint $table): void {
+            $table->foreign('doc_version_id')->references('id')->on('doc_version')->onDelete('cascade');
+        });
     }
 
     /**

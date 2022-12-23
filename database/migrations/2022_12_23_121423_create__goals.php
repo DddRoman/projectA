@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('structures', function (Blueprint $table) {
+        Schema::create('goals', function (Blueprint $table) {
             $table->id();
-            $table->integer('ind_id');
-            $table->integer('dependence');
+            $table->integer('politic_id');
             $table->string('name');
-            $table->string('abv');
+            $table->string('body');
             $table->timestamps();
         });
-        Schema::table('structures', static function (Blueprint $table): void {
-            $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
+        Schema::table('goals', static function (Blueprint $table): void {
+            $table->foreign('politic_id')->references('id')->on('politics')->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('structures');
+        Schema::dropIfExists('_goals');
     }
 };

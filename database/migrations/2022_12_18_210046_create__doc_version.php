@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('year');
             $table->timestamps();
         });
+        Schema::table('doc_version', static function (Blueprint $table): void {
+            $table->foreign('doc_id')->references('id')->on('docs')->onDelete('cascade');
+        });
     }
 
     /**

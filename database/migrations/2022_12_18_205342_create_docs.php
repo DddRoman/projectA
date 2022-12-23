@@ -19,6 +19,10 @@ return new class extends Migration
             $table->integer('str_id');
             $table->timestamps();
         });
+        Schema::table('docs', static function (Blueprint $table): void {
+            $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
+            $table->foreign('str_id')->references('id')->on('structures')->onDelete('cascade'); 
+        });
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\StructureController;
 use App\Http\Controllers\IndustriaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 /*
@@ -38,7 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
     Route::get('/positions/select/{ind}', [PositionController::class, 'select_structure'])->name('positions.select');
     Route::get('/positions/select', [PositionController::class, 'select_other'])->name('positions.other');
-    Route::get('/ses', [StructureController::class, 'ses'])->name('ses');
+    Route::get('/ses', function(){
+        return session::all();
+    }
+    )->name('ses');
 });
 Route::resource('/positions',PositionController::class);
 Route::resource('/structures',StructureController::class);

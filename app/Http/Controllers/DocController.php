@@ -12,6 +12,37 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 class DocController extends Controller
 {
+    public function createItem($doc_id){
+    
+        $Items=DocText::where('doc_version_id','=',$doc_id);
+        return Inertia::render(
+            'Docs/CreateItem',
+        [
+            'Doc'=>$doc_id,
+            'Items'=> $Items,
+        ]
+        );
+    }
+    
+    public function ItemStore(Request $request)
+    {
+        $id_indust=session('industria');
+        $id_struct=session('structure');
+        $doc=Docs::create([
+            'ind_id'=>$id_indust,
+            'str_id'=>$id_struct,  
+        ]);
+        $data=  [
+            'doc_id'=>$doc->id,
+            'name'=>$request->name,
+            'shifr'=>$request->shifr,
+            'version'=>$request->version,
+            'year'=>$request->year,
+        ];
+        //return $data;
+        DocVersion::create($data);
+        return redirect('docs.items');
+    }
     public function items($doc_id){
     
         $Items=DocText::where('doc_version_id','=',$doc_id);
@@ -19,6 +50,7 @@ class DocController extends Controller
             'Docs/Items',
         [
             'Items'=>$Items,
+            'doc'=>$doc_id,
         ]
         );
     }
@@ -85,7 +117,9 @@ class DocController extends Controller
     }
     public function index()
     {
-          
+        if(!session()->has('industria')||!session()->has('structure'))  
+        return $this->hasSessions();
+        else
         $s=$this->hasSessions();
         $docs=$this->all($s['ind'],$s['str']);
         return Inertia::render(
@@ -99,15 +133,23 @@ class DocController extends Controller
     }
     public function hasSessions(){ /// выборка из сессий
         if(session()->has('industria'))
-        $id_indust=session('industria');
+           { $id_indust=session('industria');}
         else
-            return $this->select_otherIndustria();
+          {  return $this->select_otherIndustria();}
 
         if(session()->has('structure'))
-            $id_struct=session('structure');
+          {  $id_struct=session('structure');}
         else
-            return $this->select_otherStructure();  
+          {  return $this->select_otherStructure(); } 
+
         return ['ind'=>$id_indust,'str'=>$id_struct];    
+    }
+    public function selectSession($id,$type){
+        if($type=='industria')
+            session(['industria'=>$id]);
+        if($type=='structure')
+            session(['structure'=>$id]);
+        return redirect('/docs');
     }
     public function select_otherIndustria(){
         if(Industria::where('auth_id','=',Auth::id())->count()==0)

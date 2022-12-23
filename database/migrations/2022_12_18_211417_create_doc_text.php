@@ -23,6 +23,9 @@ return new class extends Migration
             $table->boolean('draft');
             $table->timestamps();
         });
+        Schema::table('doc_text', static function (Blueprint $table): void {
+            $table->foreign('doc_version_id')->references('id')->on('doc_version')->onDelete('cascade');
+        });
     }
 
     /**

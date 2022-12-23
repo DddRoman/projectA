@@ -21,6 +21,9 @@ return new class extends Migration
             $table->text('discription');
             $table->timestamps();
         });
+        Schema::table('positions', static function (Blueprint $table): void {
+            $table->foreign('struct_id')->references('id')->on('structures')->onDelete('cascade');
+        });
     }
 
     /**

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('dependence')->nullable();
             $table->string('name');
+            $table->string('abv')->nullable();
             $table->text('discription')->nullable();
         });
     }
