@@ -11,7 +11,6 @@ class Docs extends Model
     protected $table = 'docs';
 
     protected $fillable = [
-        'ind_id',
         'str_id',
      ];
 }

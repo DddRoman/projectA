@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('docs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ind_id');
             $table->foreignId('str_id');
             $table->timestamps();
         });
         Schema::table('docs', static function (Blueprint $table): void {
-            $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
             $table->foreign('str_id')->references('id')->on('structures')->onDelete('cascade'); 
         });
     }

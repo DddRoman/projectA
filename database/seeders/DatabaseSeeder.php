@@ -60,13 +60,31 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
-         \App\Models\User::factory(100)->create();
+        $this->call([
+            UsersSeeder::class,
+            IndustriaSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            StructureSeeder::class,
+            PositionSeeder::class,
+            PositionSeeder::class,
+            PositionSeeder::class,
+            PositionSeeder::class,
+            PositionSeeder::class,
+            ]);
          \App\Models\Industria::factory(100)->create();
-        // \App\Models\Type::factory(100)->create();
          \App\Models\Structure::factory(100)->create();
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+         $this->call([
+            DocsSeeder::class,
+            DocVersionSeeder::class, 
+            DocVerificationSeeder::class, 
+            DocTextSeeder::class,
+            ]);
     }
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class IndustriaSeeder extends Seeder
+class DocTextSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class IndustriaSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Industria::factory(10)->create();
+        \App\Models\DocText::factory(1000000)->create();
     }
 }
