@@ -40,13 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
     Route::get('/positions/select/{ind}', [PositionController::class, 'select_structure'])->name('positions.select');
     Route::get('/positions/select', [PositionController::class, 'select_other'])->name('positions.other');
-    Route::get('/ses/{ind}', function($ind){
-        if(Structure::where('ind_id','=',$ind)->count()==0)
-        return 0;
-      else
-        return Structure::query()->where('ind_id','=',$ind)->pluck('id')->random();
-    }
-    )->name('ses');
+
 });
 Route::resource('/positions',PositionController::class);
 Route::resource('/structures',StructureController::class);
@@ -54,3 +48,10 @@ Route::resource('/structures',StructureController::class);
 Route::resource('/industria',IndustriaController::class);
 require __DIR__.'/auth.php';
 require __DIR__.'/docs.php';
+Route::get('/ses/{ind}', function($ind){
+    if(Structure::where('ind_id','=',$ind)->count()==0)
+    return 0;
+  else
+    return Structure::query()->where('ind_id','=',$ind)->pluck('id')->random();
+}
+)->name('ses');
