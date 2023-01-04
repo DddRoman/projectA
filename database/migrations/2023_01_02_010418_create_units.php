@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->integer('struct_id')->nullable();
-            $table->string('name');
-            $table->string('abv');
-            $table->text('discription');
+            $table->integer('auth_id');
+            $table->integer('ind');
+            $table->integer('structure');
+            $table->integer('position');
+            $table->string('type');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('units');
     }
 };

@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('struct_id')->nullable();
-            $table->string('name');
-            $table->string('abv');
-            $table->text('discription');
-            $table->timestamps();
+        Schema::table('positions', function (Blueprint $table) {
+            $table->integer('ind_id')->after('id')->nullable();
         });
 
     }
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::table('positions', function (Blueprint $table) {
+            $table->dropColumn('ind_id');
+        });
     }
 };

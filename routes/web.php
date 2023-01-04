@@ -4,12 +4,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\IndustriaController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Models\Structure;
 use Inertia\Inertia;
-
+use App\Services\FactoryService;
+use App\Models\Position;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,17 +42,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
     Route::get('/positions/select/{ind}', [PositionController::class, 'select_structure'])->name('positions.select');
     Route::get('/positions/select', [PositionController::class, 'select_other'])->name('positions.other');
-    Route::get('/ses/{ind}', function($ind){
-        if(Structure::where('ind_id','=',$ind)->count()==0)
-        return 0;
-      else
-        return Structure::query()->where('ind_id','=',$ind)->pluck('id')->random();
+    Route::get('/ses', function(){
+        $ind=FactoryService::getRandomIndustriaId();
+        $struct=FactoryService::getRandomStructureId($ind);
+        $data=[
+            'dependence'=>FactoryService::getRandomPositionId($struct),
+            'ind_id'=>$ind,
+            'struct_id'=> $struct,
+            'name'=>fake()->text(10),
+            'abv'=>Str::random(3),
+            'discription'=>fake()->text(500),
+        ];
+        $pos=Position::create($data);
+        return $pos;
     }
     )->name('ses');
 });
 Route::resource('/positions',PositionController::class);
 Route::resource('/structures',StructureController::class);
-
 Route::resource('/industria',IndustriaController::class);
+Route::resource('/unit',UnitController::class);
 require __DIR__.'/auth.php';
 require __DIR__.'/docs.php';

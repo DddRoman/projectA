@@ -14,6 +14,6 @@ class DocsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Docs::factory(1000)->create();
+        \App\Models\Docs::factory(10)->create();
     }
 }

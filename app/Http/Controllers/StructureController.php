@@ -51,6 +51,7 @@ class StructureController extends Controller
     public function index_show(){
         $id_industria=session('industria');
         $structures = Structure::where('ind_id','=',$id_industria);
+       // return   Industria::find($id_industria);
         return Inertia::render(
                 'Structure/Index',
                 [

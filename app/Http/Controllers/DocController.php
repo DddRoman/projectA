@@ -190,7 +190,7 @@ class DocController extends Controller
         return $result;
     }
     public function all($ind_id,$str_id){
-        $docs=Docs::where('ind_id','=',$ind_id)->where('str_id','=',$str_id);
+        $docs=Docs::where('str_id','=',$str_id);
         $results=[];
         foreach($docs->get() as $doc){
             $results[]=$this->doc_info($doc->id);

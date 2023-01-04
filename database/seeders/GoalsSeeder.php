@@ -14,6 +14,6 @@ class GoalsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Goals::factory(100)->create();
+        \App\Models\Goals::factory(10)->create();
     }
 }

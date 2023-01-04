@@ -1,0 +1,1 @@
+<canvas class="designer" id="canvas" width="1390" height="1105" style="display: inline-block;"></canvas>
