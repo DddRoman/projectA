@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/structures/select', [StructureController::class, 'select_other'])->name('structures.other');
     Route::get('/positions/select/{ind}', [PositionController::class, 'select_structure'])->name('positions.select');
     Route::get('/positions/select', [PositionController::class, 'select_other'])->name('positions.other');
+<<<<<<< HEAD
     Route::get('/ses', function(){
         $ind=FactoryService::getRandomIndustriaId();
         $struct=FactoryService::getRandomStructureId($ind);
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
         return $pos;
     }
     )->name('ses');
+=======
+
+>>>>>>> f2daec8fe72e69ba5ceee91c4baa7fc5798b9bc6
 });
 Route::resource('/positions',PositionController::class);
 Route::resource('/structures',StructureController::class);
@@ -64,3 +68,10 @@ Route::resource('/industria',IndustriaController::class);
 Route::resource('/unit',UnitController::class);
 require __DIR__.'/auth.php';
 require __DIR__.'/docs.php';
+Route::get('/ses/{ind}', function($ind){
+    if(Structure::where('ind_id','=',$ind)->count()==0)
+    return 0;
+  else
+    return Structure::query()->where('ind_id','=',$ind)->pluck('id')->random();
+}
+)->name('ses');
