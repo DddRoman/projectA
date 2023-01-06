@@ -14,6 +14,6 @@ class PoliticsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Politics::factory(100)->create();
+        \App\Models\Politics::factory(10)->create();
     }
 }

@@ -51,6 +51,11 @@ const showingNavigationDropdown = ref(false);
                             </NavLink>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink :href="'/unit'" >
+                                Unit
+                            </NavLink>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink :href="'/docs'" >
                                 Doc
                             </NavLink>

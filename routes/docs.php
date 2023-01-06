@@ -19,5 +19,5 @@ Route::get('/docs/{id}/items', [DocController::class, 'items'])->name('docs.item
 Route::delete('/docs/{id}/destroyitem', [DocController::class, 'destroyitem'])->name('docs.destroyitem');
 Route::get('/docs/createItem/{doc}', [DocController::class, 'createItem'])->name('docs.createItem');
 Route::get('/edit/{id}/edit', [DocController::class, 'editItem'])->name('docs.item.edit');
-Route::get('/item/store', [DocController::class, 'ItemStore'])->name('item.store');
+Route::post('/item/store', [DocController::class, 'ItemStore'])->name('item.store');
 

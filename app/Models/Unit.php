@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class Unit extends Model
 {
     use HasFactory;
-    protected $table = 'positions';
+    protected $table = 'units';
     protected $fillable = [
-        'dependence',
-        'ind_id',
-        'struct_id',
-        'name',
-        'abv',
-        'discription'
+        'auth_id',              
+        'ind',
+        'structure',
+        'position',
+        'type',
     ];
 
 }

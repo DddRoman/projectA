@@ -15,12 +15,14 @@ class PositionFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition()
-    {
-        $ind=FactoryService::getRandomStructure0Id();
+    { 
+        $ind=FactoryService::getRandomIndustriaId();
+        $struct=FactoryService::getRandomStructureId($ind);
         return [
-            'dependence'=>FactoryService::getRandomPositionId($ind),
-            'struct_id'=> $ind,
-            'name'=>fake()->name(),
+            'dependence'=>FactoryService::getRandomPositionId($struct),
+            'ind_id'=>$ind,
+            'struct_id'=> $struct,
+            'name'=>fake()->text(20),
             'abv'=>Str::random(3),
             'discription'=>fake()->text(500),
         ];

@@ -78,8 +78,8 @@ class DatabaseSeeder extends Seeder
             PositionSeeder::class,
             PositionSeeder::class,
             ]);
-         \App\Models\Industria::factory(100)->create();
-         \App\Models\Structure::factory(100)->create();
+         \App\Models\Industria::factory(10)->create();
+         \App\Models\Structure::factory(10)->create();
          $this->call([
             DocsSeeder::class,
             DocVersionSeeder::class, 

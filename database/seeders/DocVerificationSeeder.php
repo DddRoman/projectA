@@ -14,7 +14,7 @@ class DocVerificationSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\DocVerification::factory(1000)->create();
+        \App\Models\DocVerification::factory(10)->create();
 
     }
 }

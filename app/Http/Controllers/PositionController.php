@@ -68,7 +68,7 @@ class PositionController extends Controller
         $id_industria=session('industria');
         $id_struct=session('structure');
         $id_position=session('position');
-        $dep=Position::where('struct_id','=',$id_struct);
+        $dep=Position::where('ind_id','=', $id_industria);
 
         return Inertia::render(
             'Position/Create',
@@ -98,6 +98,7 @@ class PositionController extends Controller
 
         ]);
         $position=Position::create([
+            'ind_id' =>session('industria'),
             'struct_id' => $request->struct_id,
             'name' => $request->name,
             'abv' => $request->abv,
@@ -129,7 +130,8 @@ class PositionController extends Controller
     public function edit(Position $position)
     {
         $id_struct=session('structure');
-        $dep=Position::where('struct_id','=',$id_struct);
+        $id_ind=session('industria');
+        $dep=Position::where('ind_id','=',$id_ind);
         return Inertia::render(
             'Position/Edit',
             [
