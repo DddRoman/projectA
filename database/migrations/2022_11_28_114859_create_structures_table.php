@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('structures', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ind_id');
-            $table->integer('dependence');
+            $table->integer('dependence')->nullable();
             $table->string('name');
             $table->string('abv');
             $table->timestamps();
         });
-        Schema::table('structures', static function (Blueprint $table): void {
+        Schema::table('departments', static function (Blueprint $table): void {
             $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
         });
     }

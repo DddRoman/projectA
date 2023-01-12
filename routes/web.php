@@ -22,7 +22,7 @@ use App\Models\Position;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -71,3 +71,11 @@ Route::get('/ses/{ind}', function($ind){
     return Structure::query()->where('ind_id','=',$ind)->pluck('id')->random();
 }
 )->name('ses');
+*/
+Route::get('/', function () {
+    return view('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->middleware(['auth'])->name('index');
+require __DIR__.'/auth.php';

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('docs', static function (Blueprint $table): void {
-            $table->foreign('str_id')->references('id')->on('structures')->onDelete('cascade'); 
+            $table->foreign('str_id')->references('id')->on('departments')->onDelete('cascade'); 
         });
     }
 

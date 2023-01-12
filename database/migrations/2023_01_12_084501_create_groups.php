@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('goals', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('politic_id');
-            $table->string('name');
-            $table->text('text');
+            $table->foreignId('ind_id');
+            $table->foreignId('chief_position');
             $table->timestamps();
         });
-        Schema::table('goals', static function (Blueprint $table): void {
-            $table->foreign('politic_id')->references('id')->on('politics')->onDelete('cascade');
+        Schema::table('groups', static function (Blueprint $table): void {
+            $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
+            $table->foreign('chief_position')->references('id')->on('positions')->onDelete('cascade');
         });
     }
 
@@ -31,7 +31,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {        
-        Schema::dropIfExists('_goals');
+    {
+        Schema::dropIfExists('groups');
     }
 };

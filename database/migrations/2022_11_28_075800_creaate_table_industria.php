@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('industria', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('auth_id');
-            $table->integer('dependence');            
+            $table->foreignId('auth_id');  
+            $table->integer('dependence')->nullable();    
             $table->string('name');
-            $table->string('type');
+            $table->foreignId('type');
             $table->string('discription');
             $table->timestamps();
         });
         Schema::table('industria', static function (Blueprint $table): void {
             $table->foreign('auth_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('type')->references('id')->on('type')->onDelete('cascade');
         });
     }
 

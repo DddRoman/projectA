@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('auth_id');
             $table->integer('ind');
-            $table->integer('structure');
+            $table->integer('department');
             $table->integer('position');
             $table->string('type');
             $table->timestamps();

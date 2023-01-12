@@ -62,8 +62,8 @@ class DatabaseSeeder extends Seeder
         }
         $this->call([
             UsersSeeder::class,
-            IndustriaSeeder::class,
-            StructureSeeder::class,
+        //    IndustriaSeeder::class,
+           /* StructureSeeder::class,
             StructureSeeder::class,
             StructureSeeder::class,
             StructureSeeder::class,
@@ -76,21 +76,21 @@ class DatabaseSeeder extends Seeder
             PositionSeeder::class,
             PositionSeeder::class,
             PositionSeeder::class,
-            PositionSeeder::class,
+            PositionSeeder::class,*/
             ]);
          \App\Models\Industria::factory(10)->create();
-         \App\Models\Structure::factory(10)->create();
-         $this->call([
+      //   \App\Models\Structure::factory(10)->create();
+       /*  $this->call([
             DocsSeeder::class,
             DocVersionSeeder::class, 
             DocVerificationSeeder::class, 
             DocTextSeeder::class,
             ]);
-            $this->call([
-                PoliticsSeeder::class,
-                GoalsSeeder::class,
-                TaskSeeder::class,
-                ]);
-
+        $this->call([
+            PoliticsSeeder::class,
+            GoalsSeeder::class,
+            TaskSeeder::class,
+            ]);
+*/
     }
 }

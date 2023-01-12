@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->integer('struct_id')->nullable();
+            $table->foreignId('ind_id');
             $table->string('name');
             $table->string('abv');
-            $table->text('discription');
             $table->timestamps();
+        });
+        Schema::table('positions', static function (Blueprint $table): void {
+            $table->foreign('ind_id')->references('id')->on('industria')->onDelete('cascade');
         });
 
     }
